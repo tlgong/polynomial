@@ -5,6 +5,8 @@ class X:
     def __repr__(self):
         return "X"
 
+    def evaluate(self, i):
+        return i
 
 
 class Int:
@@ -14,6 +16,8 @@ class Int:
     def __repr__(self):
         return str(self.i)
 
+    def evaluate(self,val):
+        return self.i
 
 
 class Add:
@@ -24,6 +28,8 @@ class Add:
     def __repr__(self):
         return repr(self.p1) + " + " + repr(self.p2)
 
+    def evaluate(self,val):
+        return int(self.p1.evaluate(val)+self.p2.evaluate(val))
 class Mul:
     def __init__(self, p1, p2):
         self.p1 = p1
@@ -37,6 +43,9 @@ class Mul:
         if isinstance(self.p2, Add):
             return repr(self.p1) + " * ( " + repr(self.p2) + " )"
         return repr(self.p1) + " * " + repr(self.p2)
+
+    def evaluate(self,val):
+        return int(self.p1.evaluate(val))*int(self.p2.evaluate(val))
 
 
 Mul(X(), X())
